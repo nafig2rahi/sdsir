@@ -15,13 +15,10 @@ class Take
      */
     public function handle($request, Closure $next)
     {
-          if(Session::has('userid')){                  
-        //dd('hi');                               
-        return view('welcome');
-    } else {                                                                                                                     
-        return Redirect('/login')->with('message','You are not Logged In...!!!');                                                                        
-    }
- 
+         if(!Session::has('userid')){                                               
+            return Redirect('/login')->with('message','You are not Logged In...!!!');
+        } 
+        
         return $next($request);
     }
 }

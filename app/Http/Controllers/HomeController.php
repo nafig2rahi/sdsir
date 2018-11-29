@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
   public function welcome(){
-$this->middleware('welcome');
+return view('welcome');
  }
     public function addpost(){
             if(Session::has('userid')){                  
