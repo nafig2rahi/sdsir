@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/','HomeController@welcome');
 Route::get('addpost','HomeController@addpost');
+	
 Route::get('allpost','HomeController@allpost');
-Route::get('dashboard','HomeController@dashboard')->mid();
+Route::get('dashboard','HomeController@dashboard');
 Route::get('login','HomeController@login');
 Route::get('logout','HomeController@logout');
 Route::get('register','HomeController@register');
@@ -24,5 +24,9 @@ Route::post('/loginstore','HomeController@store');
 Route::get('/delete/{id}','HomeController@delete');
 Route::get('/update/{id}','HomeController@update');
 Route::post('/hot/{id}','HomeController@hot');
+Route::group(['middleware' => 'take'], function(){
+Route::get('/','HomeController@welcome');
+});
+
 
 //;laravel new imageupload

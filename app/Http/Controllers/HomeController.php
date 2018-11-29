@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
   public function welcome(){
-
-   if(Session::has('userid')){                  
-        //dd('hi');                               
-        return view('welcome');
-    } else {                                                                                                                     
-        return Redirect::to('/login')->with('message','You are not Logged In...!!!');                                                                        
-    }
-  }
+$this->middleware('welcome');
+ }
     public function addpost(){
-    	return view('backend.pages.addpost');
+            if(Session::has('userid')){                  
+        //dd('hi');                               
+    return view('backend.pages.addpost');
+    } else {                                                                                                                     
+        return Redirect('/login')->with('message','You are not Logged In...!!!');                                                                        
+    }
+    	
     }
   public function allpost(){
       $allpost=DB::table('post')->get();
@@ -46,7 +46,7 @@ class HomeController extends Controller
             if ($result) {
               Session::put('userid',$result->id);
               //dd($result->id);
-           return Redirect::to('/dashboard');
+           return Redirect::to('/');
             } else {
                 return Redirect::to('/login');   
             }

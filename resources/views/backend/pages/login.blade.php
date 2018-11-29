@@ -17,6 +17,14 @@
 
  <div class="box">
   <h1>Login</h1>
+  <?php
+                $message = Session::get('message');
+                if($message){
+                  echo $message;
+                  Session::put('message',null);
+                } 
+              ?>
+  
   <form action="{{URL::to('loginstore')}}" method="post">
     {{ csrf_field() }}
     <div class="inputBox">
